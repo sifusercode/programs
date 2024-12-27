@@ -1,0 +1,78 @@
+PImage etch;
+int r = 0;
+int g = 0;
+int b = 0;
+Float x = 400.0;
+Float x1 = 400.0;
+Float y = 400.0;
+Float y1 = 400.0;
+void setup(){
+size(800,800);
+etch=loadImage("https://static.wixstatic.com/media/a85461_94e0dcb0cf2448c8bdabc44ba79e7be3~mv2.jpeg/v1/fill/w_650,h_552,al_c,q_80/etch_a_sketch.jpeg");
+  etch.resize(800,800);
+  image(etch,0,0);
+  textSize(20);
+  fill(0);
+  text("Up",30,700);
+  text("Down",30,740);
+  text("Left",730,700);
+  text("Right",730,740);
+  text("Erase",350,710);
+}
+void draw(){
+  strokeWeight(5);
+  stroke(r,g,b);
+  line(x,y,x1,y1);
+  if(x1>687){
+  x1=600.0;
+  }
+    if(x1<107){
+  x1=107.0;
+  }
+    if(y1>638){
+  y1=638.0;
+  }
+    if(y1<145){
+  y1=145.0;
+  }
+  if(mousePressed && mouseX<400&&mouseY<750&&mouseY>700&&mouseX>350){
+        image(etch,0,0);
+        text("Up",30,700);
+        text("Down",30,740);
+        text("Left",730,700);
+        text("Right",730,740);
+        text("Erase",350,710);
+  }
+//Up black
+  if(mousePressed && mouseX<80 && mouseY<720 && mouseY>680 && mouseX>30){
+    y=y1;
+    y1-=1;
+    r = 0;
+    g = 0;
+    b = 0;
+  }
+//Down white
+  if(mousePressed && mouseX<80 && mouseY<760 && mouseY>720 && mouseX>30){
+    y=y1;
+    y1+=1;
+    r=255;
+    g=255;
+    b=255;
+  }
+//Left red
+  if(mousePressed && mouseX<780 && mouseY<720 && mouseY>680 && mouseX>720){
+    x=x1;
+    x1-=1;
+    r=255;
+    g=0;
+    b=0;
+  }
+//Right blue
+  if(mousePressed && mouseX<780 && mouseY<760 && mouseY>720 && mouseX>720){
+    x=x1;
+    x1+=1;
+     r=0;
+     g=0;
+     b=255;
+}
+}
