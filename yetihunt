@@ -1,0 +1,183 @@
+PImage back;
+PImage hunt;
+PImage yeti;
+PImage cross;
+int gameState=0;
+int x1=0;
+int y1=720-150;
+float x2=1280+random(200);
+int y2=720-180;
+float x3=1280+random(200);
+int y3=720-70;
+int yeti_life1=1;
+int yeti_life2=1;
+int hunt_life=3;
+float R1=random(-3, 3);
+float R2=random(-3, 3);
+int score=0;
+int snow = 1500;
+float[] snowX = new float[snow];
+float[] snowY = new float[snow];
+float[] snowSize = new float[snow];
+float[] snowSpeedX = new float[snow];
+float[] snowSpeedY = new float[snow];
+int type = 0;
+String s="TIME TO HUNT!";
+void setup() {
+  noCursor();
+  size(1280, 720);
+  back = loadImage("https://static.wixstatic.com/media/68790b_11763e939b8e42118b0dd5505ca8d45d~mv2.png");
+  back.resize(width, height);
+  hunt = loadImage("https://static.wixstatic.com/media/bd8d52_d03eef0def0b46c087d393dd5b832073~mv2.png");
+  hunt.resize(100, 100);
+  yeti = loadImage("https://static.wixstatic.com/media/bd8d52_cbee78129f8c4456a536338ee114a150~mv2.png");
+  yeti.resize(100, 100);
+  cross = loadImage("https://static.wixstatic.com/media/bd8d52_707eed0d2e094bfdad6e541b52a68ff0~mv2.png");
+  cross.resize(125, 125);
+  for (int i=0; i<snowX.length; i+=1) {
+    snowX[i]=random(0, width);
+    snowY[i]=random(-height, 0);
+    snowSize[i]=random(0.1, 5);
+    snowSpeedX[i]=random(-3, 3);
+    snowSpeedY[i]=random(0.1, 5);
+  }
+  story();
+}
+void draw() {
+  if (gameState==0) {
+    image(back, 0, 0);
+    textSize(100);
+    fill(255, 223, 0);
+    text("Yeti Hunt", width/2-200, height/2-50);
+    textSize(50);
+    text("Press to Start", width/2-150, height/2+25);
+    if (mousePressed) {
+      gameState=1;
+    }
+  } else if (gameState==1) {
+    textSize(40);
+    R1=random(20);
+    R2=random(20);
+    image(back, 0, 0);
+    image(hunt, x1, y1);
+    image(yeti, x2, y2);
+    image(yeti, x3, y3);
+    image(cross, mouseX-100, mouseY-100);
+    fill(0);
+    text("HP:"+hunt_life, 15, 40);
+    text("SCORE:"+score, 15, 75);
+    if (y2>y1) {
+      y2-=1;
+    }
+    if (y2<y1) {
+      y2+=1;
+    }
+    if (y3>y1) {
+      y3-=1;
+    }
+    if (y3<y1) {
+      y3+=1;
+    }
+    if (keyPressed&&key=='w'||key=='W') {
+      type=1;
+    } else if (keyPressed&&key=='s'||key=='S') {
+      type=2;
+    } else if (keyPressed&&key=='a'||key=='A') {
+      type=3;
+    } else if (keyPressed&&key=='d'||key=='D') {
+      type=4;
+    } else {
+      type=0;
+    }
+    if (type==1) {
+      y1-=2;
+    }
+    if (type==2) {
+      y1+=2;
+    }
+    if (type==3) {
+      x1-=2;
+    }
+    if (type==4) {
+      x1+=2;
+    }
+    if (x2>x1) {
+      x2-=R1;
+    }
+    if (x3>x1) {
+      x3-=R2;
+    }
+    if (y1<=535) {
+      y1=535;
+    }
+    if (y1>627) {
+      y1=627;
+    }
+    if (x1<=0) {
+      x1=0;
+    }
+    if (x1>=1280) {
+      x1=1280;
+    }
+    if (x2<=x1+50) {
+      x2=1280+random(200);
+      hunt_life-=1;
+    }
+    if (x3<=x1+50) {
+      x3=1280+random(200);
+      hunt_life-=1;
+    }
+    if (mouseX>x2&&mouseX<x2+100&&mouseY>y2&&mouseY<y2+100&&mousePressed) {
+      yeti_life1-=1;
+    }
+    if (mouseX>x3&&mouseX<x3+100&&mouseY>y3&&mouseY<y3+100&&mousePressed) {
+      yeti_life2-=1;
+    }
+    if (hunt_life==0) {
+      gameState=2;
+      x3=1280+random(200);
+      x2=1280+random(200);
+    }
+    if (yeti_life1==0) {
+      x2=1280+200;
+      yeti_life1=1;
+      score+=1;
+    }
+    if (yeti_life2==0) {
+      x3=1280+200;
+      yeti_life2=1;
+      score+=1;
+    }
+  } else if (gameState==2) {
+    hunt_life=3;
+    score=0;
+    image(back, 0, 0);
+    textSize(100);
+    fill(255, 223, 0);
+    text("You Lost", width/2-200, height/2-50);
+    textSize(50);
+    text("Click to Retry", width/2-150, height/2+25);
+    if (mousePressed) {
+      gameState=1;
+       x1=0;
+       y1=720-150;
+    }
+  }
+  for (int i=0; i<snowX.length; i+=1) {
+    snowX[i]+=snowSpeedX[i];
+    snowY[i]+=snowSpeedY[i];
+    fill(255);
+    noStroke();
+    ellipse(snowX[i], snowY[i], snowSize[i], snowSize[i]);
+    if (snowY[i]>height) {
+      snowX[i]=random(0, width);
+      snowY[i]=random(-height, 0);
+      snowSize[i]=random(0.1, 5);
+      snowSpeedX[i]=random(-3, 3);
+      snowSpeedY[i]=random(0.1, 5);
+    }
+  }
+}
+void story() {
+  print(s);
+}
