@@ -1,0 +1,112 @@
+int gameState = 0;
+int type=0;
+float x1 = random(50, 400);
+float y1 = random(50, 400);
+int x = 250;
+int y = 250;
+int score = 0;
+PImage liv;
+void setup() {
+  size(500, 500);
+  liv=loadImage("https://static.wixstatic.com/media/557e1e_547a8486434443dd90963533a10c9cae~mv2.jpg");
+  liv.resize(500, 500);
+}
+void draw() {
+  image(liv, 0, 0);
+  if (gameState == 0) {
+    background(0);
+    textSize(70);
+    fill(255, 0, 0);
+    text("SPEEDBALL", width/2-170, height/2);
+    textSize(20);
+    fill(255, 0, 0);
+    text("Click To Begin", width/2-55, 50+height/2);
+    if (mousePressed) {
+      gameState=1;
+    }
+  }
+  if (gameState==1) {
+    fill(236, 211, 82);
+    ellipse(x, y, 50, 50);
+    textSize(15);
+    fill(186, 6, 34);
+    rect(0, 0, 50, 50);
+    fill(250, 84, 58);
+    rect(450, 0, 50, 50);
+    fill(232, 229, 220);
+    rect(0, 450, 50, 50);
+    fill(47, 77, 79, 255);
+    rect(450, 450, 50, 50);
+    fill(0);
+    text("right", 460, 480);
+    text("left", 15, 480);
+    text("down", 460, 30);
+    text("up", 15, 30);
+    fill(246, 79, 65);
+    rect(x1, y1, 50, 50);
+    if (x<=x1+75&&x>=x1-25&&y>=y1-25&&y<=y1+75) {
+      x1 = random(50, 450);
+      y1 = random(50, 450);
+      score++;
+    }
+    textSize(30);
+    fill(255);
+    text(score, width/2-10, 450);
+    if (mousePressed&&mouseX<50&&mouseY<50) {
+      type=4;
+    }
+    if (mousePressed&&mouseX>450&&mouseY<50) {
+      type=3;
+    }
+    if (mousePressed&&mouseX<50&&mouseY>450) {
+      type=2;
+    }
+    if (mousePressed&&mouseX>450&&mouseY>450) {
+      type=1;
+    }
+    if (type==1) {
+      x+=2;
+    } else if (type==2) {
+      x-=2;
+    } else if (type==3) {
+      y+=2;
+    } else if (type==4) {
+      y-=2;
+    }
+    if (x-25<=0) {
+      gameState=2;
+    }
+    if (x+25>=500) {
+      gameState=2;
+    }
+    if (y-25<=0) {
+      gameState=2;
+    }
+    if (y+25>=500) {
+      gameState=2;
+    }
+  }
+  if (gameState==2) {
+    background(0);
+    textSize(25);
+    fill(255, 0, 0);
+    text("Click To Try Again", width/2-80, 470);
+    textSize(75);
+    fill(255, 0, 0);
+    text("YOU DIED", 105, 250);
+    type=0;
+    textSize(50);
+    text("YOUR SCORE", 120, 380);
+    textSize(40);
+    fill(255, 0, 0);
+    text(score, width/2-5, 430);
+    if (mousePressed) {
+      gameState = 1;
+      x=250;
+      y=250;
+      score=0;
+    }
+  }
+}
+void mousePressed() {
+}
