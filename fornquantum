@@ -1,0 +1,178 @@
+def FornQ ():
+    global str0
+    str0=input('would you like to see the value of a ket or quantum gate, matrix multiply 2 quantum gates, tensor product 2 quantum gates, or open the dictionary?\n')
+    str0=str(str0)
+FornQ()    
+    
+def FornKet():   
+    if str0 == 'ket':
+        str1=input('\navailable inputs (input = meaning):\n'+'|0> = ket 0\n'+'|1> = ket 1\n'+'|+> = ket plus\n'+'|-> = ket minus\n'+'|00> = ket 00\n'+'|01> = ket 01\n'+'|10> = ket 10\n'+'|11> = ket 11\n'+'\n'+'what ket would you like to output?\n')
+        str1=str(str1)
+        print('')
+        if str1 == '|0>':
+            print('[1]\n'+'[0]')
+        if str1 == '|1>':
+            print('[0]\n'+'[1]')
+        if str1 == '|+>':
+            print('[1]\n'+'[1]')
+        if str1 == '|->':
+            print('[1]\n'+'[-1]')
+        if str1 == '|00>':
+            print('[1]\n'+'[0]\n'+'[0]\n'+'[0]')
+        if str1 == '|01>':
+            print('[0]\n'+'[1]\n'+'[0]\n'+'[0]')
+        if str1 == '|10>':
+            print('[0]\n'+'[0]\n'+'[1]\n'+'[0]')
+        if str1 == '|11>':
+            print('[0]\n'+'[0]\n'+'[0]\n'+'[1]')
+FornKet()            
+
+def FornGate():
+    if str0 == 'quantum gate':
+        str2=input('\navailable inputs (input = meaning):\n'+'C0 = Constant 0\n'+'C1 = Constant 1\n'+'I = Identity\n'+'X = Pauli-X\n'+'Y = Pauli-Y\n'+'Z = Pauli-Z\n'+'H = Hadamard\n'+'x = SWAP\n'+'C = CNOT\n'+'T = Toffoli\n'+'CSWAP = Fredkin\n'+'Sd = Phase Dagger\n'+'\n'+'what quantum gate would you like to output?\n')
+        str2=str(str2)
+        print('')
+        if str2 == 'C0':
+            print('[1 1]\n'+'[0 0]')
+        if str2 == 'C1':
+            print('[0 0]\n'+'[1 1]')
+        if str2 == 'I':
+            print('[1 0]\n'+'[0 1]')
+        if str2 == 'X':
+            print('[0 1]\n'+'[1 0]')
+        if str2 == 'Y':
+            print('[0 -i]\n'+'[i  0]')
+        if str2 == 'Z':
+            print('[1  0]\n'+'[0 -1]')
+        if str2 == 'H':
+            print('[1/sqrt(2)  1/sqrt(2)]\n'+'[1/sqrt(2) -1/sqrt(2)]')
+        if str2 == 'x':
+            print('[1 0 0 0]\n'+'[0 0 1 0]\n'+'[0 1 0 0]\n'+'[0 0 0 1]')
+        if str2 == 'C':
+            print('[1 0 0 0]\n'+'[0 1 0 0]\n'+'[0 0 0 1]\n'+'[0 0 1 0]')
+        if str2 == 'T':
+            print('[1 0 0 0 0 0 0 0]\n'+'[0 1 0 0 0 0 0 0]\n'+'[0 0 1 0 0 0 0 0]\n'+'[0 0 0 1 0 0 0 0]\n'+'[0 0 0 0 1 0 0 0]\n'+'[0 0 0 0 0 1 0 0]\n'+'[0 0 0 0 0 0 0 1]\n'+'[0 0 0 0 0 0 1 0]')
+        if str2 == 'CSWAP':
+            print('[1 0 0 0 0 0 0 0]\n'+'[0 1 0 0 0 0 0 0]\n'+'[0 0 1 0 0 0 0 0]\n'+'[0 0 0 1 0 0 0 0]\n'+'[0 0 0 0 1 0 0 0]\n'+'[0 0 0 0 0 0 1 0]\n'+'[0 0 0 0 0 1 0 0]\n'+'[0 0 0 0 0 0 0 1]')
+        if str2 == 'Sd':
+            print('[1  0]\n'+'[0 -i]')
+FornGate()
+
+def FornMM():
+    if str0 == 'matrix':
+        str3=input('\navailable inputs (input = meaning):\n'+'kets:\n'+'|0> = ket 0\n'+'|1> = ket 1\n'+'gates:\n'+'C0 = Constant 0\n'+'C1 = Constant 1\n'+'I = Identity\n'+'X = Pauli-X\n'+'Z = Pauli-Z\n'+'H = Hadamard\n'+'\nwhat ket and quantum gate (ket,gate) would you like to matrix multiply together?')
+        str3=str(str3)
+        print('')
+        if str3 == '|0>,H':
+            print('[1/sqrt(2)]\n'+'[1/sqrt(2)]')
+        if str3 == '|0>,X':
+            print('[0]\n'+'[1]')
+        if str3 == '|0>,Z':
+            print('[1]\n'+'[0]')
+        if str3 == '|0>,I':
+            print('[1]\n'+'[0]')
+        if str3 == '|0>,C0':
+            print('[1]\n'+'[0]')
+        if str3 == '|0>,C1':
+            print('[0]\n'+'[1]')
+            
+        if str3 == '|1>,H':
+            print('[ 1/sqrt(2)]\n'+'[-1/sqrt(2)]')
+        if str3 == '|1>,X':
+            print('[1]\n'+'[0]')
+        if str3 == '|1>,Z':
+            print('[ 0]\n'+'[-1]')
+        if str3 == '|1>,I':
+            print('[0]\n'+'[1]')
+        if str3 == '|1>,C0':
+            print('[1]\n'+'[0]')
+        if str3 == '|1>,C1':
+            print('[0]\n'+'[1]')
+FornMM()
+
+def FornTP():
+    if str0 == 'tensor product':
+        str4=input('\navailable inputs (input = meaning):\n'+'C0 = Constant 0\n'+'C1 = Constant 1\n'+'I = Identity\n'+'X = Pauli-X\n'+'H = Hadamard\n'+'\nwhat 2 quantum gates (gate,gate) would you like to tensor product together?')
+        str4=str(str4)
+        print('')
+        if str4 == 'H,H':
+            print('[1/sqrt(2)   1/sqrt(2)   1/sqrt(2)   1/sqrt(2)]\n'+'[1/sqrt(2)  -1/sqrt(2)   1/sqrt(2)  -1/sqrt(2)]\n'+'[1/sqrt(2)   1/sqrt(2)  -1/sqrt(2)  -1/sqrt(2)]\n'+'[1/sqrt(2)  -1/sqrt(2)  -1/sqrt(2)   1/sqrt(2)]')
+        if str4 == 'H,X':
+            print('[0   1/sqrt(2)   0   1/sqrt(2)]\n'+'[1/sqrt(2)   0   1/sqrt(2)   0]\n'+'[0   1/sqrt(2)   0  -1/sqrt(2)]\n'+'[1/sqrt(2)   0  -1/sqrt(2)   0]')
+        if str4 == 'H,I':
+            print('[1/sqrt(2)   0   1/sqrt(2)   0]\n'+'[0   1/sqrt(2)   0   1/sqrt(2)]\n'+'[1/sqrt(2)   0  -1/sqrt(2)   0]\n'+'[0   1/sqrt(2)   0  -1/sqrt(2)]')
+        if str4 == 'H,C0':
+            print('[1/sqrt(2)   1/sqrt(2)   1/sqrt(2)   1/sqrt(2)]\n'+'[0              0             0              0]\n'+'[1/sqrt(2)   1/sqrt(2)  -1/sqrt(2)  -1/sqrt(2)]\n'+'[0              0             0              0]')
+        if str4 == 'H,C1':
+            print('[0              0             0              0]\n'+'[1/sqrt(2)   1/sqrt(2)   1/sqrt(2)   1/sqrt(2)]\n'+'[0              0             0              0]\n'+'[1/sqrt(2)   1/sqrt(2)  -1/sqrt(2)  -1/sqrt(2)]\n')
+    
+        if str4 == 'X,H':
+            print('[0   0   1/sqrt(2)   1/sqrt(2)]\n'+'[0   0   1/sqrt(2)  -1/sqrt(2)]\n'+'[1/sqrt(2)   1/sqrt(2)   0   0]\n'+'[1/sqrt(2)  -1/sqrt(2)   0   0]')
+        if str4 == 'X,X':
+            print('[0 0 0 1]\n'+'[0 0 1 0]\n'+'[0 1 0 0]\n'+'[1 0 0 0]')
+        if str4 == 'X,I':
+            print('[0 0 1 0]\n'+'[0 0 0 1]\n'+'[1 0 0 0]\n'+'[0 1 0 0]')
+        if str4 == 'X,C0':
+            print('[0 0 1 1]\n'+'[0 0 0 0]\n'+'[1 1 0 0]\n'+'[0 0 0 0]')
+        if str4 == 'X,C1':
+            print('[0 0 0 0]\n'+'[0 0 1 1]\n'+'[0 0 0 0]\n'+'[1 1 0 0]')
+        
+        if str4 == 'I,H':
+            print('[1/sqrt(2)   1/sqrt(2)   0   0]\n'+'[1/sqrt(2)  -1/sqrt(2)   0   0]\n'+'[0   0   1/sqrt(2)   1/sqrt(2)]\n'+'[0   0   1/sqrt(2)  -1/sqrt(2)]')
+        if str4 == 'I,X':
+            print('[0 1 0 0]\n'+'[1 0 0 0]\n'+'[0 0 0 1]\n'+'[0 0 1 0]')
+        if str4 == 'I,I':
+            print('[1 0 0 0]\n'+'[0 1 0 0]\n'+'[0 0 1 0]\n'+'[0 0 0 1]')
+        if str4 == 'I,C0':
+            print('[1 0 1 0]\n'+'[0 1 0 1]\n'+'[0 0 0 0]\n'+'[0 0 0 0]')
+        if str4 == 'I,C1':
+            print('[0 0 0 0]\n'+'[0 0 0 0]\n'+'[1 0 1 0]\n'+'[0 1 0 1]')
+            
+        if str4 == 'C0,H':
+            print('[1/sqrt(2)   1/sqrt(2)   1/sqrt(2)   1/sqrt(2)]\n'+'[1/sqrt(2)  -1/sqrt(2)   1/sqrt(2)  -1/sqrt(2)]\n'+'[0              0             0              0]\n'+'[0              0             0              0]')
+        if str4 == 'C0,X':
+            print('[0 1 0 1]\n'+'[1 0 1 0]\n'+'[0 0 0 0]\n'+'[0 0 0 0]')
+        if str4 == 'C0,I':
+            print('[1 0 1 0]\n'+'[0 1 0 1]\n'+'[0 0 0 0]\n'+'[0 0 0 0]')
+        if str4 == 'C0,C0':
+            print('[1 1 1 1]\n'+'[0 0 0 0]\n'+'[0 0 0 0]\n'+'[0 0 0 0]')
+        if str4 == 'C0,C1':
+            print('[0 0 0 0]\n'+'[1 1 1 1]\n'+'[0 0 0 0]\n'+'[0 0 0 0]')
+        
+        if str4 == 'C1,H':
+            print('[0              0             0              0]\n'+'[0              0             0              0]\n'+'[1/sqrt(2)   1/sqrt(2)   1/sqrt(2)   1/sqrt(2)]\n'+'[1/sqrt(2)  -1/sqrt(2)   1/sqrt(2)  -1/sqrt(2)]')
+        if str4 == 'C1,X':
+            print('[0 0 0 0]\n'+'[0 0 0 0]\n'+'[0 1 0 1]\n'+'[1 0 1 0]')
+        if str4 == 'C1,I':
+            print('[0 0 0 0]\n'+'[0 0 0 0]\n'+'[1 0 1 0]\n'+'[0 1 0 1]')
+        if str4 == 'C1,C0':
+            print('[0 0 0 0]\n'+'[0 0 0 0]\n'+'[1 1 1 1]\n'+'[0 0 0 0]')
+        if str4 == 'C1,C1':
+            print('[0 0 0 0]\n'+'[0 0 0 0]\n'+'[0 0 0 0]\n'+'[1 1 1 1]')    
+FornTP()
+
+def FornDict():
+    if str0 == 'dictionary':
+        str5=input('\nQuantum Dictionary:\n'+'Quantum Computing\n'+'Plancks Constant\n'+'Quantum Teleportation\n'+'Bloch Sphere\n'+'Phase\n'+'Ada Lovelace\n'+'Alan Turing\n'+'Transistor\n'+'Universal Computer\n'+'Integrated Circuit\n'+'\ninput a term to get the definition.\n')
+        str5=str(str5)
+        if str5 == 'Quantum Computing':
+            print('- a discipline of computer science which investigates the possibilities of creating computer technology based on quantum mechanics principles. Although it is still in its early stages, it has already demonstrated to be capability for significantly faster computing speeds than classical computers.')
+        if str5 == 'Plancks Constant':
+            print('- a fundamental universal constant that explains the quantum nature of energy and links photonic energy to its frequencies. The value of the constant using the International System of Units (SI) is 6.626070151034 Js and is denoted as h.')
+        if str5 == 'Quantum Teleportation':
+            print('- a quantum phenomenon which utilizes superposition and entanglement to transfer quantum information from one location to another without physically transferring the particles themselves.')
+        if str5 == 'Bloch Sphere':
+            print('- a geometric visualization of the qubit quantum state as a point on the surface of a unit sphere.')
+        if str5 == 'Phase':
+            print('- a particular state that a qubit is in.')
+        if str5 == 'Ada Lovelace':
+            print('- (1815-1852) an English countess, mathematician, and writer who is known for being the first programmer.')
+        if str5 == 'Alan Turing':
+            print('- (1912-1954) an English mathematician, computer scientist, and logician who is known for being the father of modern computer science as well as the inventor of the hypothesized universal computer.')
+        if str5 == 'Transistor':
+            print('- A small semiconductor that controls or regulates current or voltage flow, as well as magnifying and generating electrical signals and operating as a switch/gate for them; typically consisted of three layers of a semiconductor material, each of which could transmit a current.')
+        if str5 == 'Universal Computer':
+            print('- the Turing machine, hypothesized by Alan Turing, which is capable of computing anything that is computable.')
+        if str5 == 'Integrated Circuit ':
+            print('- a collection of electronic circuits housed on a single tiny flat piece of semiconductor material.')    
+FornDict()
