@@ -1,0 +1,212 @@
+PImage cross;
+PImage player1;
+PImage player2;
+PImage zombie1;
+PImage zombie2;
+PImage END;
+PImage BG;
+int x=640;
+int y=540;
+int x1=-200;
+float y1=random(480, 700);
+int x2=1480;
+float y2=random(480, 700);
+int type=0;
+int life=1;
+int ZBlife1=1;
+int ZBlife2=1;
+int gamestate=0;
+int score;
+int ammo=30;
+int something=1;
+Rain[] rain = new Rain[150];
+void setup() {
+  noCursor();
+  size(1280, 720);
+  BG=loadImage("https://static.wixstatic.com/media/bd8d52_349debefd8124b90a15fe3be47d8234e~mv2.jpg");
+  BG.resize(1280, 720);
+  END=loadImage("https://static.wixstatic.com/media/bd8d52_be463b8a1fbc4b5db55060b7af8ab867~mv2.jpg");
+  END.resize(1280, 720);
+  player1=loadImage("https://static.wixstatic.com/media/bd8d52_6b3d714f4c714859924065e091971a35~mv2.png");
+  player1.resize(100, 100);
+  player2=loadImage("https://static.wixstatic.com/media/bd8d52_4ba9e327294e43f5b15fe19379ec2c3f~mv2.png");
+  player2.resize(100, 100);
+  zombie1=loadImage("https://static.wixstatic.com/media/bd8d52_a449c653e78244d2ba7e68a8d7010fa0~mv2.png");
+  zombie1.resize(150, 150);
+  zombie2=loadImage(" https://static.wixstatic.com/media/bd8d52_8d70cec55656403590615b1eae0b9589~mv2.png");
+  zombie2.resize(150, 150);
+  cross=loadImage("https://static.wixstatic.com/media/bd8d52_ab8d5795f9e044f29429f13ae69ce550~mv2.png");
+  cross.resize(175, 150);
+  for (int i=0; i<rain.length; i++) {
+    rain[i]=new Rain();
+  }
+}
+void draw() {
+  if (gamestate==0) {
+    image(BG, 0, 0);
+    textSize(100);
+    text("APOC", 512.5, 340);
+    textSize(50);
+    text("Click to Start", 495, 400);
+    if (mousePressed) {
+      gamestate=1;
+    }
+  } else if (gamestate==1) {
+    if (something==1) {
+      x+=1;
+      something=0;
+    }
+    image(BG, 0, 0);
+    textSize(40);
+    text("ammo:", 5, 150);
+    text(ammo, 125, 150);
+    textSize(50);
+    text(score, 640, 50);
+    if (mouseX<x) {
+      image(player2, x, y);
+    } else {
+      image(player1, x, y);
+    }
+    if (x1>x) {
+      image(zombie1, x1, y1-25);
+    } else {
+      image(zombie2, x1, y1-25);
+    }
+    if (x2>x) {
+      image(zombie1, x2, y2-25);
+    } else {
+      image(zombie2, x2, y2-25);
+    }
+    image(cross, mouseX-75, mouseY-75);
+    if (keyPressed&&key=='w'||key=='W') {
+      type=1;
+    } else if (keyPressed&&key=='s'||key=='S') {
+      type=2;
+    } else if (keyPressed&&key=='a'||key=='A') {
+      type=3;
+    } else if (keyPressed&&key=='d'||key=='D') {
+      type=4;
+    } else {
+      type=0;
+    }
+    if (keyPressed&&key=='r'||key=='R') {
+      ammo=30;
+    }
+    if (type==1) {
+      y-=2;
+    }
+    if (type==2) {
+      y+=2;
+    }
+    if (type==3) {
+      x-=2;
+    }
+    if (type==4) {
+      x+=2;
+    }
+    if (mouseX>=x1&&mouseX<=x1+100&&mouseY>=y1&&mouseY<=y1+100&&mousePressed&&ammo>0) {
+      ZBlife1-=1;
+      score+=1;
+      ammo-=1;
+    }
+    if (mouseX>=x2&&mouseX<=x2+100&&mouseY>=y2&&mouseY<=y2+100&&mousePressed&&ammo>0) {
+      ZBlife2-=1;
+      score+=1;
+      ammo-=1;
+    }
+    if (x1+100>=x&&x1<=x+100&y1+100>=y&&y1<=y+100) {
+      life-=1;
+    }
+    if (x2+100>=x&&x2<=x+100&y2+100>=y&&y2<=y+100) {
+      life-=1;
+    }
+    if (x1<x) {
+      x1+=1;
+    }
+    if (x1>x) {
+      x1-=1;
+    }
+    if (y1>y) {
+      y1-=1;
+    }
+    if (y1<y) {
+      y1+=1;
+    }
+    if (x2<x) {
+      x2+=1;
+    }
+    if (x2>x) {
+      x2-=1;
+    }
+    if (y2>y) {
+      y2-=1;
+    }
+    if (y2<y) {
+      y2+=1;
+    }
+    if (ZBlife1==0) {
+      x1=-200;
+      ZBlife1=1;
+    }
+    if (ZBlife2==0) {
+      x2=1480;
+      ZBlife2=1;
+    }
+    if (life==0) {
+      gamestate=2;
+    }
+    if (y<=272) {
+      y=272;
+    }
+    for (int i=0; i<rain.length; i++) {
+      rain[i].fall();
+      rain[i].show();
+    }
+  } else if (gamestate==2) {
+    ammo=30;
+    image(END, 0, 0);
+    textSize(50);
+    fill(99, 39, 37);
+    text("Click To Restart", 495, 550);
+    text(score, 640, 50);
+    life=1;
+    x=640;
+    y=540;
+    x1=-200;
+    y1=random(480, 700);
+    x2=1480;
+    y2=random(480, 700);
+    if (mousePressed) {
+      fill(255, 255, 255);
+      text(score, 640, 50);
+      score=0;
+      gamestate=1;
+      something=1;
+    }
+  }
+}
+class Rain {
+  float x=random(width);
+  float y=random(-500, -50);
+  float z=random(0, 20);
+  float len=map(z, 0, 20, 10, 20);
+  float yspeed=map(z, 0, 20, 1, 20);
+
+  void fall() {
+    y=y+yspeed;
+    float grav=map(z, 0, 20, 0, 0.1);
+    yspeed=yspeed+grav;
+
+    if (y>height) {
+      y=random(-200, -100);
+      yspeed=map(z, 0, 20, 4, 10);
+    }
+  }
+
+  void show() {
+    float thick=map(z, 0, 20, 1, 3);
+    strokeWeight(thick);
+    stroke(140, 0, 0);
+    line(x, y, x, y+len);
+  }
+}
