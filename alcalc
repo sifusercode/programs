@@ -1,0 +1,254 @@
+int type = 0;
+int mouseClicked=0;
+int value = 0;
+int type1 = 1;
+String  first="";
+String  second="";
+String  answer="";
+String  Operations="";
+String  stringthing="ALCalc";
+StringList calc;
+String title;
+int  thing=0;
+float f;
+float s;
+float a;
+float r = random(255);
+float g = random(255);
+float b = random(255);
+void setup() {
+  size(800, 1000);
+}
+void draw() {
+  background(255);
+  calc = new StringList();
+  for(int i=0;i<6;i+=1){
+    calc.append(str(stringthing.charAt(i)));
+    title = str(stringthing.charAt(i)); 
+    fill(r,g,b);
+    stroke(0);
+    textSize(25);
+    text(title, 21*i+25, 25);
+}
+  if (thing==1) {
+    Operations="+";
+  } else if (thing==2) {
+    Operations="-";
+  } else if (thing==3) {
+    Operations="*";
+  } else if (thing==4) {
+    Operations="/";
+  } else {
+    Operations="";
+  }
+  fill(255);
+  rect(0, 250, 400, 150);
+  textSize(75);
+  fill(0);
+  text("C", 175, 350);
+  fill(255);
+  rect(400, 250, 400, 150);
+  fill(0);
+  textSize(75);
+  text("/", 585.5, 350);
+  fill(255);
+  rect(0, 400, 200, 150);
+  textSize(75);
+  fill(0);
+  text("7", 82.5, 500);
+  fill(255);
+  rect(200, 400, 200, 150);
+  textSize(75);
+  fill(0);
+  text("8", 277.5, 500);
+  fill(255);
+  rect(400, 400, 200, 150);
+  textSize(75);
+  fill(0);
+  text("9", 477.5, 500);
+  fill(255);
+  rect(600, 400, 200, 150);
+  textSize(75);
+  fill(0);
+  text("*", 682.5, 520);
+  fill(255);
+  rect(0, 550, 200, 150);
+  textSize(75);
+  fill(0);
+  text("4", 82.5, 650);
+  fill(255);
+  rect(200, 550, 200, 150);
+  textSize(75);
+  fill(0);
+  text("5", 277.5, 650);
+  fill(255);
+  rect(400, 550, 200, 150);
+  textSize(75);
+  fill(0);
+  text("6", 477.5, 650);
+  fill(255);
+  rect(600, 550, 200, 150);
+  textSize(75);
+  fill(0);
+  text("-", 685.5, 645);
+  fill(255);
+  rect(0, 700, 200, 150);
+  textSize(75);
+  fill(0);
+  text("1", 82.5, 800);
+  fill(255);
+  rect(200, 700, 200, 150);
+  textSize(75);
+  fill(0);
+  text("2", 277.5, 800);
+  fill(255);
+  rect(400, 700, 200, 150);
+  textSize(75);
+  fill(0);
+  text("3", 477.5, 800);
+  fill(255);
+  rect(600, 700, 200, 150);
+  textSize(75);
+  fill(0);
+  text("+", 682.5, 800);
+  fill(255);
+  rect(0, 850, 200, 150);
+  textSize(75);
+  fill(0);
+  text(".", 92.5, 925);
+  fill(255);
+  rect(200, 850, 200, 150);
+  textSize(75);
+  fill(0);
+  text("0", 277.5, 950);
+  fill(255);
+  rect(400, 850, 400, 150);
+  textSize(75);
+  fill(0);
+  text("=", 582.5, 950);
+  text(first, 25, 200);
+  text(Operations, 225, 210);
+  text(second, 425, 200);
+  text(answer, 625, 200);
+  fill(255);
+}
+void mouseClicked() {
+  if (mouseX>0&&mouseX<400&&mouseY>250&&mouseY<400) {
+    first="";
+    second="";
+    answer="";
+    thing=0;
+    Operations="";
+    type=0;
+  }
+  if (mouseX>400&&mouseX<800&&mouseY>250&&mouseY<400) {
+    thing=4;
+    type=1;
+  }
+  if (type==0&&mouseX>0&&mouseX<200&mouseY>400&&mouseY<550) {
+    first+="7";
+  }
+  if (type==1&&mouseX>0&&mouseX<200&mouseY>400&&mouseY<550) {
+    second+="7";
+  }
+  if (type==0&mouseX>200&&mouseX<400&mouseY>400&&mouseY<550) {
+    first+="8";
+  }
+  if (type==1&mouseX>200&&mouseX<400&mouseY>400&&mouseY<550) {
+    second+="8";
+  }
+  if (type==0&mouseX>400&&mouseX<600&mouseY>400&&mouseY<550) {
+    first+="9";
+  }
+  if (type==1&mouseX>400&&mouseX<600&mouseY>400&&mouseY<550) {
+    second+="9";
+  }
+  if (mouseX>600&&mouseX<800&&mouseY>400&&mouseY<550) {
+    //     Function"*"
+    thing=3;
+    type=1;
+  }
+  if (type==0&mouseX>0&&mouseX<200&&mouseY>550&&mouseY<700) {
+    first+="4";
+  }
+  if (type==1&mouseX>0&&mouseX<200&&mouseY>550&&mouseY<700) {
+    second+="4";
+  }
+  if (type==0&mouseX>200&&mouseX<400&&mouseY>550&&mouseY<700) {
+    first+="5";
+  }
+  if (type==1&mouseX>200&&mouseX<400&&mouseY>550&&mouseY<700) {
+    second+="5";
+  }
+  if (type==0&mouseX>400&&mouseX<600&&mouseY>550&&mouseY<700) {
+    first+="6";
+  }
+  if (type==1&mouseX>400&&mouseX<600&&mouseY>550&&mouseY<700) {
+    second+="6";
+  }
+  if (mouseX>600&&mouseX<800&&mouseY>550&&mouseY<700) {
+    //     Function"-"
+    thing=2;
+    type=1;
+  }
+  if (type==0&mouseX>0&&mouseX<200&&mouseY>700&&mouseY<850) {
+    first+="1";
+  }
+  if (type==1&mouseX>0&&mouseX<200&&mouseY>700&&mouseY<850) {
+    second+="1";
+  }
+  if (type==0&mouseX>200&&mouseX<400&&mouseY>700&&mouseY<850) {
+    first+="2";
+  }
+  if (type==1&mouseX>200&&mouseX<400&&mouseY>700&&mouseY<850) {
+    second+="2";
+  }
+  if (type==0&mouseX>400&&mouseX<600&&mouseY>700&&mouseY<850) {
+    first+="3";
+  }
+  if (type==1&mouseX>400&&mouseX<600&&mouseY>700&&mouseY<850) {
+    second+="3";
+  }
+  if (mouseX>600&&mouseX<800&&mouseY>700&&mouseY<850) {
+    //     Function"+"
+    thing=1;
+    type=1;
+  }
+  if (type==0&mouseX>0&&mouseX<200&&mouseY>850&&mouseY<1000) {
+    first+=".";
+  }
+  if (type==1&mouseX>0&&mouseX<200&&mouseY>850&&mouseY<1000) {
+    second+=".";
+  }
+  if (type==0&mouseX>200&&mouseX<400&&mouseY>850&&mouseY<1000) {
+    first+="0";
+  }
+  if (type==1&mouseX>200&&mouseX<400&&mouseY>850&&mouseY<1000) {
+    second+="0";
+  }
+  if (mouseX>400&&mouseX<800&&mouseY>850&&mouseY<1000) {
+    type=0;
+    f = float(first);
+    s = float(second);
+    if (thing==1) {
+      a = f+s;
+      answer = str(a);
+    }
+    if (thing==2) {
+      a = f-s;
+      answer = str(a);
+    }
+    if (thing==3) {
+      a = f*s;
+      answer = str(a);
+    }
+    if (thing==4) {
+      a = f/s;
+      answer = str(a);
+    }
+  }
+  text(first, 25, 200);
+  text(thing, 225, 220);
+  text(second, 425, 200);
+  text(answer, 625, 200);
+}
