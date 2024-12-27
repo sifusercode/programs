@@ -1,0 +1,56 @@
+float r=200, g=200, b=200;
+float ri = 2, gi =3, bi = -1;
+boolean colorSelected = false;
+void setup(){
+  size(500,500);
+  background(20);
+  for(int i = 0; i < width; i+= 15){
+    for(int j = 0; j < height; j += 15){
+      fill(20);
+      stroke(30);
+      ellipse(i,j,15,15); 
+    }
+  }
+}
+void draw(){
+  if(mousePressed && mouseY > height-15){
+    background(20);
+      for(int i = 0; i < width; i+= 5){
+       for(int j = 0; j < height; j += 15){
+       fill(20);
+       stroke(30);
+       ellipse(i,j,15,15);        
+    }
+  }
+}
+  for(int i = 0; i < width; i += 15){
+    for(int j = 0; j < height; j += 15){
+     if(mousePressed && mouseX > i && mouseX < i + 15 && mouseY > j && mouseY < j + 15){
+       fill(r,g,b);
+       stroke(0);
+       ellipse(i,j,15,15);
+     }
+    }
+  }
+  if(colorSelected==false){
+  r+=ri;
+  g+=gi;
+  b+=bi;
+  if(r>254 || r<100){
+    ri*=-1;
+  }
+  if(g>254 || g<100){
+    gi*=-1;
+  }
+  if(b>254 ||b<100){
+    bi*=-1;
+  }
+  fill(r,g,b);
+  rect(0,0,width,15);
+  }
+}
+void mousePressed(){
+ if(mouseY < 15){
+   colorSelected = !colorSelected;
+   } 
+}
